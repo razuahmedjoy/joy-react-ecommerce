@@ -1,0 +1,23 @@
+.header{
+    height:80px;
+
+}
+.bg-header{
+    background-color: #1C2B35;
+}
+.nav-item{
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.nav-item a.nav-link{
+    color: #fff !important;
+    font-size: 18px;
+    transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -ms-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+}
+.nav-item:hover a.nav-link{
+    color: orange !important;
+}
