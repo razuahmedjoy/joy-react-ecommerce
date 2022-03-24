@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Cart from '../Cart/Cart';
 import Product from '../Product/Product';
 import './Shop.css';
 
@@ -47,11 +48,7 @@ const Shop = () => {
             </div>
             <div className="cart-container col-md-4">
 
-                <h2>Order Summery</h2>
-                <h4>Selected Items {cart.length}</h4>
-                <div>
-                    
-                </div>
+                <Cart cart={cart}></Cart>
             </div>
             </div>
         </div>
