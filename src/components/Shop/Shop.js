@@ -3,6 +3,8 @@ import Cart from '../Cart/Cart';
 import Product from '../Product/Product';
 import './Shop.css';
 
+import {addToDb, getStoredCart} from '../../utilities/fakedb'
+
 const Shop = () => {
     
     const [products,setProducts] = useState([])
@@ -12,20 +14,66 @@ const Shop = () => {
 
 
     useEffect(() =>{
+        // console.log('products before fetch',products);
         fetch('products.json')
         .then(res=> res.json())
-        .then(products => setProducts(products))
+        .then(products => {
+            setProducts(products);
+            // console.log("products loaded",products);
+        })
     },[])
 
-    const handleAddToCart = (product) => {
-        // console.log(product);
+    useEffect(() =>{
+        console.log('local storage first line')
+
+        const storedCart = getStoredCart();
+        const savedCart = [];
+        // console.log(storedCart);
+        for(const id in storedCart){
+            // console.log(id);
+            const addedProduct = products.find(product => product.id === id);
+            if(addedProduct){
+                const quantity = storedCart[id];
+                addedProduct.quantity = quantity
+                
+                savedCart.push(addedProduct);
+
+                
+            }
+
+
+        }
+        console.log(savedCart);
+        setCart(savedCart);
+        console.log("local storage finished")
+    },[products])
+
+    const handleAddToCart = (selectedProduct) => {
+        console.log(selectedProduct);
         // cart.push(product) // but we should not use like this
+        
+        let newCart = [];
+
+        const exists = cart.find(product => product.id === selectedProduct.id)
+
+        if(!exists) {
+            selectedProduct.quantity = 1;
+            newCart = [...cart,selectedProduct];
+        }else{
+
+            const rest = cart.filter(product=> product.id !== selectedProduct.id)
+            exists.quantity += 1;
+
+            newCart = [...rest,exists]
+        }
 
         // use this to add new element to an array
-
-        const newCart = [...cart,product];
+        
         setCart(newCart);
         console.log(newCart);
+
+        // set to local storage or add to database
+        addToDb(selectedProduct.id);
     }
 
     return (
