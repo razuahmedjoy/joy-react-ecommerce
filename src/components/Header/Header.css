@@ -9,7 +9,7 @@
     padding-left: 15px;
     padding-right: 15px;
 }
-.nav-item a.nav-link{
+.nav-item .nav-link{
     color: #fff !important;
     font-size: 18px;
     transition: all 0.2s ease-in-out;
