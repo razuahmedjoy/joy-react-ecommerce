@@ -9,6 +9,10 @@
  * 8. go to github usefirebase hooks and use createUserWithEmailAndPassword
  * 9. if user is created navigaet to home 
  * 10. useSignInWithEmailAndPassword for sign in
+ * 11 . Create ReQuireAuth Component ===> check if user exist then return children else 
+ *      navigate to login page with tracking the previous location
+ * 12. In route wrap protected route with RequireAuth Component
+ * 13. 
  */
 
 

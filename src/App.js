@@ -8,24 +8,36 @@ import NotFound404 from './components/NotFound404/NotFound404'
 import About from './components/About/About';
 import Login from './components/Login/Login';
 import SignUp from './components/SignUp/SignUp';
+import RequireAuth from './components/RequireAuth/RequireAuth';
+import Shipment from './components/Shipment/Shipment';
 function App() {
   return (
     <div className="">
-    <Header></Header>
+      <Header></Header>
 
-    <Routes>
+      <Routes>
 
-      <Route path="/" element={<Shop></Shop>}/>
-      <Route path="/shop" element={<Shop></Shop>}/>
-      <Route path="/orders" element={<Orders></Orders>}/>
-      <Route path="/inventory" element={<Inventory></Inventory>}/>
-      <Route path="/about" element={<About></About>}/>
-      <Route path="/login" element={<Login></Login>}/>
-      <Route path="/signup" element={<SignUp></SignUp>}/>
-      <Route path="*" element={<NotFound404></NotFound404>}/>
+        <Route path="/" element={<Shop></Shop>} />
+        <Route path="/shop" element={<Shop></Shop>} />
 
-    </Routes>
-    
+        <Route path="/orders" element={<Orders></Orders>} />
+        <Route path="/inventory" element={
+          <RequireAuth>
+            <Inventory></Inventory>
+          </RequireAuth>
+        } />
+        <Route path="/shipment" element={
+          <RequireAuth>
+            <Shipment></Shipment>
+          </RequireAuth>
+        } />
+        <Route path="/about" element={<About></About>} />
+        <Route path="/login" element={<Login></Login>} />
+        <Route path="/signup" element={<SignUp></SignUp>} />
+        <Route path="*" element={<NotFound404></NotFound404>} />
+
+      </Routes>
+
     </div>
   );
 }

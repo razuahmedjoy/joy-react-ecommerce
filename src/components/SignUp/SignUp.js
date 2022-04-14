@@ -16,7 +16,7 @@ const SignUp = () => {
     const [
         createUserWithEmailAndPassword,
         user,
-        loading,
+      
       ] = useCreateUserWithEmailAndPassword(auth);
 
     const handleEmailBlur = event => {
